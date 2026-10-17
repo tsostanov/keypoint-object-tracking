@@ -76,6 +76,19 @@ class GeometryTests(unittest.TestCase):
             self.assertEqual(result.status, "LOST")
             self.assertEqual(result.reason, "few_inliers")
 
+    def test_invalid_projected_geometry(self):
+        tracker = KeypointTracker(self.reference, self.corners)
+        matrices = [np.full((3, 3), np.nan),
+                    np.array([[1, 0, 0], [0, 1, 0], [0.01, 0, -3.2]]),
+                    np.diag([0.001, 0.001, 1])]
+        for matrix in matrices:
+            with self.subTest(matrix=matrix), patch("tracker.cv2.findHomography",
+                    side_effect=lambda source, *args: (matrix, np.ones((len(source), 1), np.uint8))):
+                result = tracker.detect(self.reference)
+                self.assertEqual(result.status, "LOST")
+                expected = "homography_failed" if not np.isfinite(matrix).all() else "invalid_geometry"
+                self.assertEqual(result.reason, expected)
+
     def test_config_validation(self):
         for values in ({"ratio": 1.1}, {"ratio": float("nan")}, {"min_matches": 3},
                        {"scale_factor": 1}, {"ransac_threshold": 0}):
@@ -118,10 +131,11 @@ class SelectionTests(unittest.TestCase):
                 stack.enter_context(patch("selection.cv2." + name))
             stack.enter_context(patch("selection.cv2.setMouseCallback", side_effect=register))
             stack.enter_context(patch("selection.cv2.getWindowProperty", return_value=1))
-            # Первая итерация рисует пустой выбор; вторая — точки; R сбрасывает их.
+            # Пустой выбор должен рисоваться без ошибки и отменяться.
             with patch("selection.cv2.waitKey", side_effect=[ord("r"), 27]):
                 self.assertIsNone(choose_corners(frame))
-            with patch("selection.cv2.waitKey", side_effect=lambda delay: select(13)):
+            actions = iter((lambda: select(-1), lambda: ord("r"), lambda: select(13)))
+            with patch("selection.cv2.waitKey", side_effect=lambda delay: next(actions)()):
                 np.testing.assert_array_equal(choose_corners(frame), corners)
 
 
@@ -197,6 +211,40 @@ class VideoTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "VideoWriter"):
                 process_video(build_parser().parse_args(self.arguments()))
             writer.return_value.release.assert_called_once()
+
+    def test_unreadable_first_frame_releases_capture(self):
+        with patch("main.cv2.VideoCapture") as capture:
+            capture.return_value.isOpened.return_value = True
+            capture.return_value.read.return_value = (False, None)
+            with self.assertRaisesRegex(ValueError, "первый кадр"):
+                process_video(build_parser().parse_args(self.arguments()))
+            capture.return_value.release.assert_called_once()
+
+    def test_reference_only_video(self):
+        reference, _ = reference_scene()
+        writer = cv2.VideoWriter(str(self.source), cv2.VideoWriter_fourcc(*"MJPG"), 12, (640, 480))
+        self.assertTrue(writer.isOpened())
+        try:
+            writer.write(reference)
+        finally:
+            writer.release()
+        summary = process_video(build_parser().parse_args(self.arguments()))
+        self.assertEqual(summary["written_frames"], 1)
+        self.assertEqual(summary["processed_frames"], 0)
+        self.assertEqual(summary["detected_frames"], 0)
+        self.assertEqual(summary["detection_rate"], 0)
+        self.assertEqual(summary["mean_processing_ms"], 0)
+
+    def test_preview_quit_saves_partial_results(self):
+        arguments = self.arguments()
+        arguments.remove("--no-preview")
+        with contextlib.ExitStack() as stack:
+            for name in ("namedWindow", "imshow", "destroyAllWindows"):
+                stack.enter_context(patch("main.cv2." + name))
+            stack.enter_context(patch("main.cv2.waitKey", return_value=ord("q")))
+            summary = process_video(build_parser().parse_args(arguments))
+        self.assertTrue(summary["stopped_early"])
+        self.assertEqual(summary["written_frames"], 2)
 
     def test_fps_fallback(self):
         for fps in (0, -1, float("nan"), float("inf")):

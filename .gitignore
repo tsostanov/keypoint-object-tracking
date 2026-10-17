@@ -10,3 +10,8 @@ data/*.json
 results/*_frames.csv
 results/*_summary.json
 results/*_selection.json
+# Небольшой проверенный пример для отчёта; остальные видео остаются локальными.
+!results/demo/synthetic_tracked.mp4
+!results/demo/synthetic_tracked_frames.csv
+!results/demo/synthetic_tracked_summary.json
+!results/demo/synthetic_selection.json

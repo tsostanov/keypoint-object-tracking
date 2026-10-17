@@ -1,0 +1,15 @@
+{
+  "kind": "synthetic_only",
+  "seed": 2026,
+  "python": "3.13.7",
+  "opencv": "4.14.0",
+  "numpy": "2.5.4",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "visible_frames": 74,
+  "detected_visible_frames": 74,
+  "absent_frames": 15,
+  "false_positive_frames": 0,
+  "mean_corner_error_px": 0.7684121602529509,
+  "max_corner_error_px": 3.6824874877929688,
+  "verified_output_frames": 90
+}

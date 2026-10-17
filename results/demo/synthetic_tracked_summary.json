@@ -1,0 +1,30 @@
+{
+  "input": "results\\demo\\synthetic.mp4",
+  "output": "results\\demo\\synthetic_tracked.mp4",
+  "frame_size": [
+    640,
+    480
+  ],
+  "video_fps": 25.0,
+  "written_frames": 90,
+  "processed_frames": 89,
+  "detected_frames": 74,
+  "detection_rate": 0.8314606741573034,
+  "mean_processing_ms": 19.86569438201074,
+  "processing_fps": 50.33803403849522,
+  "pipeline_fps": 45.99152825715022,
+  "stopped_early": false,
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5
+  }
+}

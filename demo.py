@@ -3,12 +3,14 @@
 import argparse
 import json
 from pathlib import Path
+import platform
 
 import cv2
 import numpy as np
 
 from main import build_parser, process_video
 from selection import save_selection
+from tracker import KeypointTracker
 
 
 def reference_scene(seed=2026):
@@ -83,6 +85,61 @@ def make_contact_sheet(video, destination):
         raise ValueError("Не удалось записать иллюстрацию.")
 
 
+def evaluate_demo(directory):
+    """Проверяем декодированное видео относительно известных углов генератора."""
+    truth = json.loads((directory / "synthetic_ground_truth.json").read_text(encoding="utf-8"))
+    capture = cv2.VideoCapture(str(directory / "synthetic.mp4"))
+    errors = []
+    visible = found = false_positives = absent = 0
+    try:
+        ok, frame = capture.read()
+        if not ok:
+            raise ValueError("Не читается эталон демонстрации.")
+        tracker = KeypointTracker(frame, np.float32(truth[0]["corners"]))
+        for record in truth[1:]:
+            ok, frame = capture.read()
+            if not ok:
+                raise ValueError("Демонстрационное видео оборвалось.")
+            result = tracker.detect(frame)
+            if record["corners"] is None:
+                absent += 1
+                false_positives += result.corners is not None
+            else:
+                visible += 1
+                if result.corners is not None:
+                    found += 1
+                    errors.extend(np.linalg.norm(result.corners - np.float32(record["corners"]), axis=1).tolist())
+    finally:
+        capture.release()
+    output = cv2.VideoCapture(str(directory / "synthetic_tracked.mp4"))
+    output_frames = 0
+    try:
+        if not output.isOpened() or abs(output.get(cv2.CAP_PROP_FPS) - 25) > 0.01:
+            raise ValueError("Не удалось проверить FPS результата.")
+        while True:
+            ok, frame = output.read()
+            if not ok:
+                break
+            if frame.shape != (480, 640, 3):
+                raise ValueError("Размер результата изменился.")
+            output_frames += 1
+    finally:
+        output.release()
+    if output_frames != len(truth):
+        raise ValueError("Число выходных кадров не совпало с исходным.")
+    report = {
+        "kind": "synthetic_only", "seed": 2026, "python": platform.python_version(),
+        "opencv": cv2.__version__, "numpy": np.__version__, "platform": platform.platform(),
+        "visible_frames": visible, "detected_visible_frames": found,
+        "absent_frames": absent, "false_positive_frames": false_positives,
+        "mean_corner_error_px": float(np.mean(errors)) if errors else None,
+        "max_corner_error_px": float(np.max(errors)) if errors else None,
+        "verified_output_frames": output_frames,
+    }
+    (directory / "evaluation.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(report, indent=2))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--directory", type=Path, default=Path("results/demo"))
@@ -94,6 +151,7 @@ def main():
         "--no-preview", "--label", "Demo card",
     ]))
     make_contact_sheet(output, args.directory / "preview.jpg")
+    evaluate_demo(args.directory)
 
 
 if __name__ == "__main__":
