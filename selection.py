@@ -60,7 +60,7 @@ def choose_corners(frame):
         cv2.setMouseCallback(window, on_mouse)
         while True:
             image = cv2.resize(frame, display_size)
-            display_points = np.rint(np.array(points) * scale_xy).astype(np.int32)
+            display_points = np.rint(np.array(points).reshape(-1, 2) * scale_xy).astype(np.int32)
             if len(points):
                 cv2.polylines(image, [display_points], len(points) == 4, (0, 220, 255), 2)
                 for index, point in enumerate(display_points):
