@@ -1,0 +1,36 @@
+{
+  "input": "data\\videos\\simple_track.avi",
+  "output": "results\\videos\\simple_track_tracked.mp4",
+  "frame_size": [
+    640,
+    360
+  ],
+  "video_fps": 30.0,
+  "written_frames": 557,
+  "processed_frames": 556,
+  "detected_frames": 528,
+  "detection_rate": 0.9496402877697842,
+  "mean_processing_ms": 34.09067158294773,
+  "processing_fps": 29.33353769716298,
+  "pipeline_fps": 27.063796533521185,
+  "stopped_early": false,
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5,
+    "optical_flow": true
+  },
+  "show_keypoints": true,
+  "tracking_methods": {
+    "ORB": 134,
+    "FLOW": 394
+  }
+}

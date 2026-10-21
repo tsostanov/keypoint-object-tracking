@@ -1,0 +1,30 @@
+{
+  "input": "data\\videos\\mona-lisa-blur.avi",
+  "output": "results\\videos\\mona-lisa-blur_tracked.mp4",
+  "frame_size": [
+    640,
+    360
+  ],
+  "video_fps": 29.97,
+  "written_frames": 558,
+  "processed_frames": 557,
+  "detected_frames": 177,
+  "detection_rate": 0.3177737881508079,
+  "mean_processing_ms": 11.462756553763036,
+  "processing_fps": 87.23905068643514,
+  "pipeline_fps": 75.6891442225746,
+  "stopped_early": false,
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5
+  }
+}

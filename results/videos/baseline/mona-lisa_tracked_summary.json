@@ -1,0 +1,30 @@
+{
+  "input": "data\\videos\\mona-lisa.avi",
+  "output": "results\\videos\\mona-lisa_tracked.mp4",
+  "frame_size": [
+    640,
+    360
+  ],
+  "video_fps": 29.97,
+  "written_frames": 558,
+  "processed_frames": 557,
+  "detected_frames": 196,
+  "detection_rate": 0.3518850987432675,
+  "mean_processing_ms": 12.857125493630106,
+  "processing_fps": 77.77788281645357,
+  "pipeline_fps": 68.24087042505568,
+  "stopped_early": false,
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5
+  }
+}

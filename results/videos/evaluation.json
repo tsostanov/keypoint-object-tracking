@@ -1,0 +1,226 @@
+{
+  "date": "2026-10-21",
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5,
+    "optical_flow": true
+  },
+  "show_keypoints": true,
+  "ransac_seed": 2026,
+  "reference_corners": [
+    [
+      5,
+      5
+    ],
+    [
+      634,
+      5
+    ],
+    [
+      634,
+      354
+    ],
+    [
+      5,
+      354
+    ]
+  ],
+  "environment": {
+    "python": "3.13.7",
+    "opencv": "4.14.0",
+    "numpy": "2.5.4",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "annotation": "Visible first-frame artwork area, no ground-truth annotation. Detection rate is not accuracy.",
+  "videos": [
+    {
+      "input": "data\\videos\\mona-lisa-blur-extra-credit.avi",
+      "source_frames": 558,
+      "output": "results\\videos\\mona-lisa-blur-extra-credit_tracked.mp4",
+      "verified_output_frames": 558,
+      "processed_frames": 557,
+      "detected_frames": 529,
+      "detection_rate": 0.9497307001795332,
+      "mean_processing_ms": 47.440964453126334,
+      "processing_fps": 21.07882947843613,
+      "tracking_methods": {
+        "ORB": 163,
+        "FLOW": 366
+      },
+      "lost_frames": 28,
+      "lost_intervals": [
+        [
+          11,
+          29
+        ],
+        [
+          391,
+          399
+        ]
+      ],
+      "recovery_frames": [
+        30,
+        400
+      ],
+      "lost_reasons": {
+        "no_descriptors": 28
+      },
+      "review_frames": [
+        0,
+        11,
+        30,
+        139,
+        279,
+        418,
+        557
+      ],
+      "sample_with_existing_overlay": false,
+      "visual_review": "Contact sheet inspected; detected quadrilaterals follow the artwork in sampled frames. No complete ground-truth annotation."
+    },
+    {
+      "input": "data\\videos\\mona-lisa-blur.avi",
+      "source_frames": 558,
+      "output": "results\\videos\\mona-lisa-blur_tracked.mp4",
+      "verified_output_frames": 558,
+      "processed_frames": 557,
+      "detected_frames": 451,
+      "detection_rate": 0.8096947935368043,
+      "mean_processing_ms": 46.31996750504513,
+      "processing_fps": 21.58896160475676,
+      "tracking_methods": {
+        "ORB": 177,
+        "FLOW": 274
+      },
+      "lost_frames": 106,
+      "lost_intervals": [
+        [
+          10,
+          28
+        ],
+        [
+          303,
+          389
+        ]
+      ],
+      "recovery_frames": [
+        29,
+        390
+      ],
+      "lost_reasons": {
+        "no_descriptors": 19,
+        "few_matches": 62,
+        "few_inliers": 25
+      },
+      "review_frames": [
+        0,
+        10,
+        11,
+        29,
+        30,
+        139,
+        279,
+        418,
+        557
+      ],
+      "sample_with_existing_overlay": false,
+      "visual_review": "Contact sheet inspected; detected quadrilaterals follow the artwork in sampled frames. No complete ground-truth annotation."
+    },
+    {
+      "input": "data\\videos\\mona-lisa.avi",
+      "source_frames": 558,
+      "output": "results\\videos\\mona-lisa_tracked.mp4",
+      "verified_output_frames": 558,
+      "processed_frames": 557,
+      "detected_frames": 470,
+      "detection_rate": 0.8438061041292639,
+      "mean_processing_ms": 31.632360143207023,
+      "processing_fps": 31.61319596365141,
+      "tracking_methods": {
+        "ORB": 196,
+        "FLOW": 274
+      },
+      "lost_frames": 87,
+      "lost_intervals": [
+        [
+          303,
+          389
+        ]
+      ],
+      "recovery_frames": [
+        390
+      ],
+      "lost_reasons": {
+        "few_matches": 62,
+        "few_inliers": 25
+      },
+      "review_frames": [
+        0,
+        11,
+        30,
+        139,
+        279,
+        303,
+        390,
+        418,
+        557
+      ],
+      "sample_with_existing_overlay": false,
+      "visual_review": "Contact sheet inspected; detected quadrilaterals follow the artwork in sampled frames. No complete ground-truth annotation."
+    },
+    {
+      "input": "data\\videos\\simple_track.avi",
+      "source_frames": 557,
+      "output": "results\\videos\\simple_track_tracked.mp4",
+      "verified_output_frames": 557,
+      "processed_frames": 556,
+      "detected_frames": 528,
+      "detection_rate": 0.9496402877697842,
+      "mean_processing_ms": 34.09067158294773,
+      "processing_fps": 29.33353769716298,
+      "tracking_methods": {
+        "ORB": 134,
+        "FLOW": 394
+      },
+      "lost_frames": 28,
+      "lost_intervals": [
+        [
+          10,
+          28
+        ],
+        [
+          390,
+          398
+        ]
+      ],
+      "recovery_frames": [
+        29,
+        399
+      ],
+      "lost_reasons": {
+        "no_descriptors": 28
+      },
+      "review_frames": [
+        0,
+        10,
+        11,
+        29,
+        30,
+        139,
+        278,
+        417,
+        556
+      ],
+      "sample_with_existing_overlay": true,
+      "visual_review": "Contact sheet inspected; frame 278 shows drift on pre-existing overlay."
+    }
+  ]
+}

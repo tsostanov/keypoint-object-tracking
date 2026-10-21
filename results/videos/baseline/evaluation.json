@@ -1,0 +1,386 @@
+{
+  "date": "2026-10-21",
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5
+  },
+  "videos": [
+    {
+      "input": "data\\videos\\mona-lisa-blur-extra-credit.avi",
+      "source_codec": "FMP4",
+      "source_frames": 558,
+      "output": "results\\videos\\mona-lisa-blur-extra-credit_tracked.mp4",
+      "webm": "results\\videos\\mona-lisa-blur-extra-credit_preview.webm",
+      "verified_output_frames": 558,
+      "verified_webm_frames": 558,
+      "processed_frames": 557,
+      "detected_frames": 163,
+      "detection_rate": 0.2926391382405745,
+      "mean_processing_ms": 18.15207235187399,
+      "processing_fps": 55.09012858781171,
+      "lost_frames": 394,
+      "lost_intervals": [
+        [
+          11,
+          29
+        ],
+        [
+          109,
+          109
+        ],
+        [
+          113,
+          399
+        ],
+        [
+          446,
+          448
+        ],
+        [
+          454,
+          454
+        ],
+        [
+          470,
+          492
+        ],
+        [
+          494,
+          503
+        ],
+        [
+          506,
+          507
+        ],
+        [
+          509,
+          509
+        ],
+        [
+          511,
+          557
+        ]
+      ],
+      "recovery_frames": [
+        30,
+        110,
+        400,
+        449,
+        455,
+        493,
+        504,
+        508,
+        510
+      ],
+      "lost_reasons": {
+        "no_descriptors": 28,
+        "invalid_geometry": 1,
+        "few_inliers": 124,
+        "few_matches": 241
+      },
+      "review_frames": [
+        0,
+        11,
+        30,
+        139,
+        279,
+        418,
+        557
+      ],
+      "sample_with_existing_overlay": false
+    },
+    {
+      "input": "data\\videos\\mona-lisa-blur.avi",
+      "source_codec": "FMP4",
+      "source_frames": 558,
+      "output": "results\\videos\\mona-lisa-blur_tracked.mp4",
+      "webm": "results\\videos\\mona-lisa-blur_preview.webm",
+      "verified_output_frames": 558,
+      "verified_webm_frames": 558,
+      "processed_frames": 557,
+      "detected_frames": 177,
+      "detection_rate": 0.3177737881508079,
+      "mean_processing_ms": 11.462756553763036,
+      "processing_fps": 87.23905068643514,
+      "lost_frames": 380,
+      "lost_intervals": [
+        [
+          10,
+          28
+        ],
+        [
+          114,
+          114
+        ],
+        [
+          116,
+          389
+        ],
+        [
+          446,
+          446
+        ],
+        [
+          465,
+          466
+        ],
+        [
+          470,
+          492
+        ],
+        [
+          494,
+          504
+        ],
+        [
+          507,
+          507
+        ],
+        [
+          509,
+          509
+        ],
+        [
+          511,
+          557
+        ]
+      ],
+      "recovery_frames": [
+        29,
+        115,
+        390,
+        447,
+        467,
+        493,
+        505,
+        508,
+        510
+      ],
+      "lost_reasons": {
+        "no_descriptors": 19,
+        "few_inliers": 116,
+        "few_matches": 245
+      },
+      "review_frames": [
+        0,
+        10,
+        29,
+        139,
+        279,
+        418,
+        557
+      ],
+      "sample_with_existing_overlay": false
+    },
+    {
+      "input": "data\\videos\\mona-lisa.avi",
+      "source_codec": "FMP4",
+      "source_frames": 558,
+      "output": "results\\videos\\mona-lisa_tracked.mp4",
+      "webm": "results\\videos\\mona-lisa_preview.webm",
+      "verified_output_frames": 558,
+      "verified_webm_frames": 558,
+      "processed_frames": 557,
+      "detected_frames": 196,
+      "detection_rate": 0.3518850987432675,
+      "mean_processing_ms": 12.857125493630106,
+      "processing_fps": 77.77788281645357,
+      "lost_frames": 361,
+      "lost_intervals": [
+        [
+          114,
+          114
+        ],
+        [
+          116,
+          389
+        ],
+        [
+          446,
+          446
+        ],
+        [
+          465,
+          466
+        ],
+        [
+          470,
+          492
+        ],
+        [
+          494,
+          504
+        ],
+        [
+          507,
+          507
+        ],
+        [
+          509,
+          509
+        ],
+        [
+          511,
+          557
+        ]
+      ],
+      "recovery_frames": [
+        115,
+        390,
+        447,
+        467,
+        493,
+        505,
+        508,
+        510
+      ],
+      "lost_reasons": {
+        "few_inliers": 116,
+        "few_matches": 245
+      },
+      "review_frames": [
+        0,
+        114,
+        115,
+        139,
+        279,
+        418,
+        557
+      ],
+      "sample_with_existing_overlay": false
+    },
+    {
+      "input": "data\\videos\\simple_track.avi",
+      "source_codec": "MJPG",
+      "source_frames": 557,
+      "output": "results\\videos\\simple_track_tracked.mp4",
+      "webm": "results\\videos\\simple_track_preview.webm",
+      "verified_output_frames": 557,
+      "verified_webm_frames": 557,
+      "processed_frames": 556,
+      "detected_frames": 134,
+      "detection_rate": 0.24100719424460432,
+      "mean_processing_ms": 18.270229495860377,
+      "processing_fps": 54.73384996212431,
+      "lost_frames": 422,
+      "lost_intervals": [
+        [
+          10,
+          28
+        ],
+        [
+          73,
+          73
+        ],
+        [
+          78,
+          78
+        ],
+        [
+          80,
+          80
+        ],
+        [
+          83,
+          83
+        ],
+        [
+          85,
+          85
+        ],
+        [
+          89,
+          89
+        ],
+        [
+          91,
+          93
+        ],
+        [
+          95,
+          398
+        ],
+        [
+          446,
+          446
+        ],
+        [
+          453,
+          453
+        ],
+        [
+          468,
+          505
+        ],
+        [
+          507,
+          556
+        ]
+      ],
+      "recovery_frames": [
+        29,
+        74,
+        79,
+        81,
+        84,
+        86,
+        90,
+        94,
+        399,
+        447,
+        454,
+        506
+      ],
+      "lost_reasons": {
+        "no_descriptors": 28,
+        "few_inliers": 166,
+        "few_matches": 228
+      },
+      "review_frames": [
+        0,
+        10,
+        29,
+        139,
+        278,
+        417,
+        556
+      ],
+      "sample_with_existing_overlay": true
+    }
+  ],
+  "environment": {
+    "python": "3.13.7",
+    "opencv": "4.14.0",
+    "numpy": "2.5.4",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "ransac_seed": 2026,
+  "reference_corners": [
+    [
+      5,
+      5
+    ],
+    [
+      634,
+      5
+    ],
+    [
+      634,
+      354
+    ],
+    [
+      5,
+      354
+    ]
+  ],
+  "annotation": "Visible first-frame artwork area; paper edges are outside the first frame. No ground-truth annotation."
+}

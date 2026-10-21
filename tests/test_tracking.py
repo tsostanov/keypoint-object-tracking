@@ -13,7 +13,7 @@ import numpy as np
 from demo import reference_scene, synthetic_frame
 from main import build_parser, main, process_video, video_fps
 from selection import choose_corners, load_selection, save_selection, validate_selection
-from tracker import KeypointTracker, TrackerConfig, valid_quad
+from tracker import Detection, KeypointTracker, TrackerConfig, valid_quad
 
 
 class GeometryTests(unittest.TestCase):
@@ -43,6 +43,36 @@ class GeometryTests(unittest.TestCase):
         result = KeypointTracker(self.reference, self.corners).detect(frame)
         self.assertEqual(result.status, "TRACKING", result.reason)
         self.assertLess(float(np.linalg.norm(result.corners - target, axis=1).max()), 5)
+
+    def test_flow_follows_shrinking_object_when_reference_matching_fails(self):
+        tracker = KeypointTracker(self.reference, self.corners)
+        # Имитируем потерю совпадений ORB, оставляя реальную последовательность изображений и LK.
+        with patch.object(tracker, "_detect_reference", side_effect=lambda *args: Detection(reason="few_matches")):
+            for scale in np.linspace(1, 0.25, 25):
+                target = ((self.corners - [320, 240]) * scale + [320, 240]).astype(np.float32)
+                transform = cv2.getPerspectiveTransform(self.corners, target)
+                frame = cv2.warpPerspective(self.reference, transform, (640, 480))
+                result = tracker.detect(frame)
+                with self.subTest(scale=scale):
+                    self.assertEqual(result.status, "TRACKING", result.reason)
+                    self.assertEqual(result.method, "FLOW")
+                    self.assertLess(float(np.linalg.norm(result.corners - target, axis=1).max()), 5)
+
+    def test_flow_drops_missing_object_and_reference_search_recovers(self):
+        tracker = KeypointTracker(self.reference, self.corners)
+        lost = tracker.detect(np.zeros_like(self.reference))
+        self.assertEqual(lost.status, "LOST")
+        self.assertIsNone(tracker.flow_points)
+        recovered = tracker.detect(self.reference)
+        self.assertEqual(recovered.status, "TRACKING")
+        self.assertEqual(recovered.method, "ORB")
+        self.assertIsNotNone(tracker.flow_points)
+
+    def test_flow_can_be_disabled(self):
+        tracker = KeypointTracker(self.reference, self.corners, TrackerConfig(optical_flow=False))
+        with patch.object(tracker, "_detect_reference", return_value=Detection(reason="few_matches")):
+            self.assertEqual(tracker.detect(self.reference).status, "LOST")
+        self.assertIsNone(tracker.flow_points)
 
     def test_invalid_quadrilaterals(self):
         for corners in ([[0, 0], [200, 200], [200, 0], [0, 200]],

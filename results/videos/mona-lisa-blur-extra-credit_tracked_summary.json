@@ -1,0 +1,36 @@
+{
+  "input": "data\\videos\\mona-lisa-blur-extra-credit.avi",
+  "output": "results\\videos\\mona-lisa-blur-extra-credit_tracked.mp4",
+  "frame_size": [
+    640,
+    360
+  ],
+  "video_fps": 29.97,
+  "written_frames": 558,
+  "processed_frames": 557,
+  "detected_frames": 529,
+  "detection_rate": 0.9497307001795332,
+  "mean_processing_ms": 47.440964453126334,
+  "processing_fps": 21.07882947843613,
+  "pipeline_fps": 19.631176297168356,
+  "stopped_early": false,
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5,
+    "optical_flow": true
+  },
+  "show_keypoints": true,
+  "tracking_methods": {
+    "ORB": 163,
+    "FLOW": 366
+  }
+}

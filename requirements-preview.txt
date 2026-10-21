@@ -1,0 +1,2 @@
+# Optional: bundled FFmpeg for H.264 playback copies.
+imageio-ffmpeg>=0.6,<1

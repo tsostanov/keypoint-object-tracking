@@ -1,0 +1,117 @@
+{
+  "date": "2026-10-21",
+  "videos": [
+    {
+      "source": "data\\videos\\mona-lisa-blur-extra-credit.avi",
+      "playback_copy": "results\\videos\\playback\\mona-lisa-blur-extra-credit.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 29.97,
+      "verified_frames": 558
+    },
+    {
+      "source": "data\\videos\\mona-lisa-blur.avi",
+      "playback_copy": "results\\videos\\playback\\mona-lisa-blur.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 29.97,
+      "verified_frames": 558
+    },
+    {
+      "source": "data\\videos\\mona-lisa.avi",
+      "playback_copy": "results\\videos\\playback\\mona-lisa.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 29.97,
+      "verified_frames": 558
+    },
+    {
+      "source": "data\\videos\\simple_track.avi",
+      "playback_copy": "results\\videos\\playback\\simple_track.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 30.0,
+      "verified_frames": 557
+    },
+    {
+      "source": "results\\videos\\mona-lisa-blur-extra-credit_tracked.mp4",
+      "playback_copy": "results\\videos\\playback\\mona-lisa-blur-extra-credit_tracked.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 29.97,
+      "verified_frames": 558
+    },
+    {
+      "source": "results\\videos\\mona-lisa-blur_tracked.mp4",
+      "playback_copy": "results\\videos\\playback\\mona-lisa-blur_tracked.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 29.97,
+      "verified_frames": 558
+    },
+    {
+      "source": "results\\videos\\mona-lisa_tracked.mp4",
+      "playback_copy": "results\\videos\\playback\\mona-lisa_tracked.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 29.97,
+      "verified_frames": 558
+    },
+    {
+      "source": "results\\videos\\simple_track_tracked.mp4",
+      "playback_copy": "results\\videos\\playback\\simple_track_tracked.mp4",
+      "codec": "h264",
+      "codec_tag": "avc1",
+      "pixel_format": "yuv420p",
+      "faststart": true,
+      "frame_size": [
+        640,
+        360
+      ],
+      "fps": 30.0,
+      "verified_frames": 557
+    }
+  ]
+}
