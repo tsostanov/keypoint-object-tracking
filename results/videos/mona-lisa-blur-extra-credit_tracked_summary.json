@@ -1,6 +1,6 @@
 {
   "input": "data\\videos\\mona-lisa-blur-extra-credit.avi",
-  "output": "results\\videos\\mona-lisa-blur-extra-credit_tracked.mp4",
+  "output": "results/videos/playback/mona-lisa-blur-extra-credit_tracked.mp4",
   "frame_size": [
     640,
     360
@@ -32,5 +32,6 @@
   "tracking_methods": {
     "ORB": 163,
     "FLOW": 366
-  }
+  },
+  "output_encoding": "H.264 copy converted after tracking; timing covers original OpenCV run"
 }

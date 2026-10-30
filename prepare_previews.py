@@ -1,4 +1,4 @@
-"""Создать копии исходников и результатов в H.264 для просмотра в VS Code."""
+"""Создать H.264-копии новых результатов для просмотра в VS Code."""
 
 from pathlib import Path
 import shutil
@@ -26,13 +26,12 @@ def find_ffmpeg():
 
 def main():
     try:
-        sources = sorted(
-            path for path in (ROOT / "data/videos").glob("*")
-            if path.is_file() and path.suffix.lower() in {".avi", ".mp4", ".mov", ".mkv", ".webm"}
-        )
-        sources += sorted((ROOT / "results/videos").glob("*_tracked.mp4"))
+        sources = sorted((ROOT / "results/videos").glob("*_tracked.mp4"))
         if not sources:
-            raise ValueError("Нет видео в data/videos/ или результатов в results/videos/.")
+            if any((ROOT / "results/videos/playback").glob("*_tracked.mp4")):
+                print("Нет новых результатов для конвертации; H.264-видео уже находятся в results/videos/playback/.")
+                return 0
+            raise ValueError("Сначала обработайте видео: нет результатов в results/videos/.")
         names = [path.stem.casefold() for path in sources]
         if len(names) != len(set(names)):
             raise ValueError("У видео одинаковые имена без расширения. Переименуйте их перед конвертацией.")

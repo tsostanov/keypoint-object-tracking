@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+results/demo_local/
 *.mp4
 *.avi
 *.mov
@@ -16,3 +17,7 @@ results/*_selection.json
 !results/demo/synthetic_tracked_frames.csv
 !results/demo/synthetic_tracked_summary.json
 !results/demo/synthetic_selection.json
+
+# Собственная съёмка и совместимый MP4 результата для отчёта.
+!data/videos/test_cv.mp4
+!results/videos/playback/test_cv_tracked.mp4

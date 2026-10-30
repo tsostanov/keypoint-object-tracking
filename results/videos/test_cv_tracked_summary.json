@@ -1,0 +1,37 @@
+{
+  "input": "data\\videos\\test_cv.mp4",
+  "output": "results/videos/playback/test_cv_tracked.mp4",
+  "frame_size": [
+    720,
+    1280
+  ],
+  "video_fps": 29.99730112777464,
+  "written_frames": 452,
+  "processed_frames": 451,
+  "detected_frames": 451,
+  "detection_rate": 1.0,
+  "mean_processing_ms": 78.3657416850353,
+  "processing_fps": 12.76067805265167,
+  "pipeline_fps": 11.356106190509534,
+  "stopped_early": false,
+  "config": {
+    "nfeatures": 2500,
+    "scale_factor": 1.2,
+    "nlevels": 8,
+    "fast_threshold": 15,
+    "ratio": 0.75,
+    "min_matches": 12,
+    "min_inliers": 10,
+    "min_inlier_ratio": 0.45,
+    "ransac_threshold": 3.0,
+    "min_area_ratio": 0.001,
+    "max_area_ratio": 1.5,
+    "optical_flow": true
+  },
+  "show_keypoints": true,
+  "tracking_methods": {
+    "ORB": 451,
+    "FLOW": 0
+  },
+  "output_encoding": "H.264 copy converted after tracking; timing covers original OpenCV run"
+}

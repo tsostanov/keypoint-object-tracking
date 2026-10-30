@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-30",
+  "kind": "own_recording",
+  "object": "Illustrated cover on a desk",
+  "environment": {
+    "python": "3.13.7",
+    "opencv": "4.14.0",
+    "numpy": "2.5.4"
+  },
+  "duration_s": 15.068022222222222,
+  "verified_videos": [
+    {
+      "path": "data/videos/test_cv.mp4",
+      "verified_frames": 452,
+      "frame_size": [
+        720,
+        1280
+      ],
+      "fps": 29.99730112777464
+    },
+    {
+      "path": "results/videos/playback/test_cv_tracked.mp4",
+      "verified_frames": 452,
+      "frame_size": [
+        720,
+        1280
+      ],
+      "fps": 29.997
+    }
+  ],
+  "csv_rows": 452,
+  "processed_frames": 451,
+  "detected_frames": 451,
+  "detection_rate": 1.0,
+  "lost_frames": 0,
+  "lost_frame_indices": [],
+  "tracking_methods": {
+    "ORB": 451,
+    "FLOW": 0
+  },
+  "review_frames": [
+    0,
+    90,
+    180,
+    271,
+    361,
+    451
+  ],
+  "annotation": "No ground-truth annotation. TRACKING rate does not measure boundary accuracy. Object remains visible in sampled frames; disappearance/recovery is not tested by this recording.",
+  "gif": {
+    "path": "results/videos/gifs/test_cv.gif",
+    "frame_size": [
+      288,
+      512
+    ],
+    "verified_frames": 90
+  },
+  "h264_codec_verified": true,
+  "visual_review": "Contact sheet inspected at frames 0, 90, 180, 271, 361 and 451. Quadrilateral follows the illustrated cover in sampled frames. No ground-truth boundary annotation.",
+  "intermediate_output_removed": true
+}

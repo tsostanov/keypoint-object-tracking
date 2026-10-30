@@ -1,6 +1,6 @@
 {
   "input": "data\\videos\\mona-lisa.avi",
-  "output": "results\\videos\\mona-lisa_tracked.mp4",
+  "output": "results/videos/playback/mona-lisa_tracked.mp4",
   "frame_size": [
     640,
     360
@@ -32,5 +32,6 @@
   "tracking_methods": {
     "ORB": 196,
     "FLOW": 274
-  }
+  },
+  "output_encoding": "H.264 copy converted after tracking; timing covers original OpenCV run"
 }
