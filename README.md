@@ -66,6 +66,7 @@ python -m venv .venv
 | `tracker.py` | Поиск объекта, сопровождение и отрисовка |
 | `prepare_previews.py` | Подготовка MP4 для просмотра |
 | `make_gifs.py` | Создание GIF для отчёта |
+| `verify_videos.py` | Проверка полных видео, статистики и различий исходников |
 | `tests/test_tracking.py` | Автоматические тесты |
 
 Все настройки доступны по команде `.\.venv\Scripts\python.exe main.py --help`.
@@ -92,24 +93,37 @@ python -m venv .venv
 В обычном ролике рамка отсутствует на кадрах 303–389 и восстанавливается на кадре 390.
 Эталоном выбрана видимая область репродукции на первом кадре, а не внешний край листа.
 
+Это три варианта **одной съёмки**, поэтому сцена и движение камеры совпадают.
+Покадровое сравнение исходных AVI показало: обычный ролик и `mona-lisa-blur.avi`
+отличаются только на кадрах **10–35** (примерно 0,33–1,17 с, нумерация с нуля).
+Остальные 532 кадра совпадают полностью. Версия `extra-credit` отличается
+на всех 558 кадрах, но также показывает ту же сцену; название не означает,
+что размытие сильнее на всём протяжении видео.
+
+Ниже один и тот же кадр № 11: слева исходный вариант, в центре `blur`, справа `extra-credit`.
+
+![Сравнение вариантов исходного видео на кадре 11](results/videos/input_comparison.jpg)
+
+| Вариант | Полное обработанное видео (MP4) | GIF-превью |
+| --- | --- | --- |
+| Обычный | [Смотреть / скачать](results/videos/playback/mona-lisa_tracked.mp4) | [GIF](results/videos/gifs/mona-lisa.gif) |
+| Размытие | [Смотреть / скачать](results/videos/playback/mona-lisa-blur_tracked.mp4) | [GIF](results/videos/gifs/mona-lisa-blur.gif) |
+| Дополнительный вариант (`extra-credit`) | [Смотреть / скачать](results/videos/playback/mona-lisa-blur-extra-credit_tracked.mp4) | [GIF](results/videos/gifs/mona-lisa-blur-extra-credit.gif) |
+
 ![Трекинг на обычном тестовом видео](results/videos/gifs/mona-lisa.gif)
 
-<details>
-<summary>Посмотреть два видео с размытием</summary>
-
-**Размытие**
-
-![Трекинг на размытом видео](results/videos/gifs/mona-lisa-blur.gif)
-
-**Сильное размытие**
-
-![Трекинг при сильном размытии](results/videos/gifs/mona-lisa-blur-extra-credit.gif)
-
-</details>
-
 [Измерения и интервалы потерь](results/videos/evaluation.json).
-Тестовые AVI находятся локально в `data/videos/`; в GitHub сохранены GIF и статистика.
-`simple_track.avi` — готовый образец результата, он не входит в сравнение.
+Все четыре полных обработанных MP4, GIF и статистика включены в Git.
+Исходные тестовые AVI находятся локально в `data/videos/`.
+Хеши, проверка декодирования всех кадров и сопоставление со статистикой:
+[проверка MP4](results/videos/playback_verification.json).
+Точные интервалы различий исходников: [покадровое сравнение](results/videos/source_comparison.json).
+
+```powershell
+.\.venv\Scripts\python.exe verify_videos.py
+# При наличии трёх исходных AVI — также повторить сравнение:
+.\.venv\Scripts\python.exe verify_videos.py --compare-sources
+```
 
 ### Собственное видео
 

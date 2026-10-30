@@ -12,7 +12,12 @@
         360
       ],
       "fps": 29.97,
-      "verified_frames": 558
+      "verified_frames": 558,
+      "sha256": "a00891d40ba13f5b0462395d91bf61d0e9489cca436930d749e7a63cf0c91fdb",
+      "bytes": 4794874,
+      "csv_frames": 558,
+      "detected_frames": 470,
+      "availability": "tracked_in_git"
     },
     {
       "input": "data/videos/mona-lisa-blur.avi",
@@ -25,7 +30,12 @@
         360
       ],
       "fps": 29.97,
-      "verified_frames": 558
+      "verified_frames": 558,
+      "sha256": "2312caba14710a1d48c2ff54f755887cdbd5054a4c9dfc4cc66e5428509e6013",
+      "bytes": 4702141,
+      "csv_frames": 558,
+      "detected_frames": 451,
+      "availability": "tracked_in_git"
     },
     {
       "input": "data/videos/mona-lisa-blur-extra-credit.avi",
@@ -38,7 +48,12 @@
         360
       ],
       "fps": 29.97,
-      "verified_frames": 558
+      "verified_frames": 558,
+      "sha256": "d6b9e01559feb9a2aa6f75176092790e785de47cdcd70402f3fda92efec87c75",
+      "bytes": 4692321,
+      "csv_frames": 558,
+      "detected_frames": 529,
+      "availability": "tracked_in_git"
     },
     {
       "input": "data/videos/test_cv.mp4",
@@ -51,7 +66,12 @@
         1280
       ],
       "fps": 29.997,
-      "verified_frames": 452
+      "verified_frames": 452,
+      "sha256": "cca36890857d17ba77a1087d2bdb45c978e17f672788d1d3a1ec4acdb0b4d18a",
+      "bytes": 9891715,
+      "csv_frames": 452,
+      "detected_frames": 451,
+      "availability": "tracked_in_git"
     }
   ]
 }

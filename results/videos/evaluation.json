@@ -176,5 +176,8 @@
       "sample_with_existing_overlay": false,
       "visual_review": "Contact sheet inspected; detected quadrilaterals follow the artwork in sampled frames. No complete ground-truth annotation."
     }
-  ]
+  ],
+  "input_availability": "local_only",
+  "output_availability": "tracked_in_git",
+  "output_verification": "results/videos/playback_verification.json"
 }

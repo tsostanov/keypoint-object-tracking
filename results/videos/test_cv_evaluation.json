@@ -57,5 +57,8 @@
   },
   "h264_codec_verified": true,
   "visual_review": "Contact sheet inspected at frames 0, 90, 180, 271, 361 and 451. Quadrilateral follows the illustrated cover in sampled frames. No ground-truth boundary annotation.",
-  "intermediate_output_removed": true
+  "intermediate_output_removed": true,
+  "input_availability": "tracked_in_git",
+  "output_availability": "tracked_in_git",
+  "output_verification": "results/videos/playback_verification.json"
 }

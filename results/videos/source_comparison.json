@@ -1,0 +1,58 @@
+{
+  "comparison": "Exact equality of decoded BGR pixels; zero-based inclusive frame intervals",
+  "opencv": "4.14.0",
+  "source_availability": "local_only",
+  "sources": [
+    {
+      "path": "data/videos/mona-lisa.avi",
+      "sha256": "0759b9a8f48fa66da719a1fa9a811dcf920fde5f11593429df7c75aeece0cd8e"
+    },
+    {
+      "path": "data/videos/mona-lisa-blur.avi",
+      "sha256": "4b2aaf2659451e04131330efea663ee2d427d1d6934a50435fe93a6397756387"
+    },
+    {
+      "path": "data/videos/mona-lisa-blur-extra-credit.avi",
+      "sha256": "3f52ca534fd294195172c7567abded3e43c21c2572558aad89a89ad19b96afd2"
+    }
+  ],
+  "compared_frames": 558,
+  "pairs": [
+    {
+      "first": "mona-lisa",
+      "second": "mona-lisa-blur",
+      "identical_frames": 532,
+      "different_frames": 26,
+      "different_intervals": [
+        [
+          10,
+          35
+        ]
+      ]
+    },
+    {
+      "first": "mona-lisa",
+      "second": "mona-lisa-blur-extra-credit",
+      "identical_frames": 0,
+      "different_frames": 558,
+      "different_intervals": [
+        [
+          0,
+          557
+        ]
+      ]
+    },
+    {
+      "first": "mona-lisa-blur",
+      "second": "mona-lisa-blur-extra-credit",
+      "identical_frames": 0,
+      "different_frames": 558,
+      "different_intervals": [
+        [
+          0,
+          557
+        ]
+      ]
+    }
+  ]
+}

@@ -10,10 +10,41 @@ from unittest.mock import patch
 import cv2
 import numpy as np
 
-from demo import reference_scene, synthetic_frame
 from main import build_parser, main, process_video, video_fps
 from selection import choose_corners, load_selection, save_selection, validate_selection
 from tracker import Detection, KeypointTracker, TrackerConfig, valid_quad
+
+
+def reference_scene(seed=2026):
+    """Текстурированный прямоугольник для проверки геометрии трекера."""
+    rng = np.random.default_rng(seed)
+    frame = np.full((480, 640, 3), (38, 32, 28), dtype=np.uint8)
+    corners = np.float32([[120, 90], [520, 90], [520, 390], [120, 390]])
+    cv2.rectangle(frame, (120, 90), (520, 390), (225, 235, 240), -1)
+    for _ in range(240):
+        x, y = rng.integers([140, 110], [500, 370])
+        color = tuple(int(value) for value in rng.integers(20, 200, 3))
+        cv2.circle(frame, (int(x), int(y)), int(rng.integers(2, 9)), color, -1)
+    cv2.rectangle(frame, (165, 185), (475, 287), (32, 44, 65), -1)
+    cv2.putText(frame, "KEYPOINT", (180, 229), cv2.FONT_HERSHEY_SIMPLEX, 1.35, (240, 245, 255), 3)
+    cv2.putText(frame, "LAB 02 / ORB", (188, 266), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (80, 220, 240), 2)
+    return frame, corners
+
+
+def transformed_frame(reference, corners, index):
+    """Известное преобразование или отсутствие объекта для регрессионных тестов."""
+    if 45 <= index < 60:
+        return np.full_like(reference, (38, 32, 28)), None
+    phase = index / 89
+    angle = np.deg2rad(18 * np.sin(phase * 2 * np.pi))
+    scale = 1 - 0.22 * np.sin(phase * np.pi)
+    rotation = scale * np.array([[np.cos(angle), -np.sin(angle)],
+                                 [np.sin(angle), np.cos(angle)]])
+    target = (corners - [320, 240]) @ rotation.T + [320 + 65 * np.sin(phase * 4), 240]
+    target += np.array([[0, 0], [-24 * phase, 18 * phase], [15 * phase, 0], [0, -20 * phase]])
+    target = target.astype(np.float32)
+    transform = cv2.getPerspectiveTransform(corners, target)
+    return cv2.warpPerspective(reference, transform, (640, 480), borderValue=(38, 32, 28)), target
 
 
 class GeometryTests(unittest.TestCase):
@@ -26,7 +57,7 @@ class GeometryTests(unittest.TestCase):
         tracker = KeypointTracker(self.reference, self.corners)
         for index in (10, 25, 44, 50, 60, 75, 89):
             with self.subTest(frame=index):
-                frame, truth = synthetic_frame(self.reference, self.corners, index)
+                frame, truth = transformed_frame(self.reference, self.corners, index)
                 result = tracker.detect(frame)
                 if truth is None:
                     self.assertEqual(result.status, "LOST")
@@ -182,8 +213,8 @@ class VideoTests(unittest.TestCase):
         writer = cv2.VideoWriter(str(self.source), cv2.VideoWriter_fourcc(*"MJPG"), 12, (640, 480))
         self.assertTrue(writer.isOpened())
         try:
-            for frame in (reference, synthetic_frame(reference, corners, 25)[0],
-                          np.zeros_like(reference), synthetic_frame(reference, corners, 75)[0]):
+            for frame in (reference, transformed_frame(reference, corners, 25)[0],
+                          np.zeros_like(reference), transformed_frame(reference, corners, 75)[0]):
                 writer.write(frame)
         finally:
             writer.release()
